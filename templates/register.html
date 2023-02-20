@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<section class="vh-100">
+    <div class="container py-5 h-100">
+        <div class="row d-flex justify-content-center align-items-center h-100">
+            <div class="col col-xl-5">
+                <div class="card" style="border-radius: 1rem; background-color: #FBFFFF;">
+                    <div class="row ">
+                        <div class="col-xs-1 col-lg-10 d-flex align-items-center">
+                            <div class="card-body p-4 p-lg-5 text-black">
+                                {{ super() }}
+                                {% for cat, msg in get_flashed_messages(True) %}
+                                <div class="flash {{cat}}">{{msg}}</div>
+                                {% endfor %}
+                                <form action="/register" method="post" class="form-contact">
+
+                                    <h5 class="fw-normal mb-3 pb-3" style="letter-spacing: 1px;">Register on site</h5>
+                                    <div class="form-outline mb-4">
+                                        <input type="text" name="name" value="" class="form-control" style="margin-left: 0px; background-color: #EBECF0;" required/><label>Имя</label>
+                                    </div>
+                                    <div class="form-outline mb-4">
+                                        <input type="text" name="email" value="" class="form-control" style="margin-left: 0px; background-color: #EBECF0;" required/><label>Email</label>
+                                    </div>
+
+                                    <div class="form-outline mb-4">
+                                        <input type="password" name="psw" value="" class="form-control" style="margin-left: 0px; background-color: #EBECF0;" required/><label>Пароль</label>
+                                    </div>
+
+                                    <div class="form-outline mb-4">
+                                        <input type="password" name="psw2" class="form-control" style="margin-left: 0px; background-color: #EBECF0;" value=""
+                                                                              required/><label>Повтор пароля</label>
+                                    </div>
+
+
+                                    <div class="pt-1 mb-4">
+                                        <button class="btn btn-dark btn-lg btn-block" type="submit">Register</button>
+                                    </div>
+                                </form>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

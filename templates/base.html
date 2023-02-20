@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+<head>
+    {% block title -%}
+    {% if title %}
+    <title>HEI - {{title}}</title>
+    {% else %}
+    <title>Lmao</title>
+    {% endif %}
+    {% endblock %}
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link type="text/css" href="{{ url_for('static', filename='css/style.css')}}" rel="stylesheet" />
+
+</head>
+<body>
+
+<div class="wrapper d-flex align-items-stretch">
+    <nav id="sidebar">
+        <div class="custom-menu">
+            <button type="button" id="sidebarCollapse" class="btn btn-primary">
+            </button>
+        </div>
+        <div class="img bg-wrap text-center py-4" style="background-image: url(/static/images/bg_1.jpg);">
+            <div class="user-logo">
+                {% if current_user.is_authenticated %}
+                <div class="img" style="background-image: url({{ url_for('userava') }});"></div>
+                <h3>{{ current_user.getName() }}</h3>
+                <h3>{{ current_user.getEmail() }}</h3>
+                {% else %}
+                <h3>Guest</h3>
+                {% endif %}
+            </div>
+        </div>
+        <ul class="list-unstyled components mb-5">
+            <li class="active">
+                <a href="/"><span class="fa fa-home mr-3"></span> Home</a>
+            </li>
+<!--            <li>-->
+<!--                <a href="#"><span class="fa fa-download mr-3 notif"><small-->
+<!--                        class="d-flex align-items-center justify-content-center">5</small></span> Download</a>-->
+<!--            </li>-->
+            <li>
+                {% if current_user.is_authenticated %}
+                <a href="/login"><span class="fa fa-user mr-3"></span> Profile </a>
+                {% else %}
+                <a href="/login"><span class="fa fa-sign-in mr-3"></span> Sign in </a>
+                {% endif %}
+            </li>
+            <li>
+                <a href="#"><span class="fa fa-cog mr-3"></span> Settings</a>
+            </li>
+            <li>
+                <a href="https://t.me/telegarasula"><span class="fa fa-support mr-3"></span> Support</a>
+            </li>
+            {% if current_user.is_authenticated %}
+            <li>
+                <a href="/logout"><span class="fa fa-sign-out mr-3"></span> Sign Out</a>
+            </li>
+            {% endif %}
+        </ul>
+
+    </nav>
+
+    <!-- Page Content  -->
+    <div id="content" class="p-5 p-md-6 pt-6" style="background-image: radial-gradient(rgba(219, 200, 247, 1), rgba(255, 255, 255, 1)">
+        {% block content -%}
+        {% endblock -%}
+    </div>
+</div>
+
+
+
+<script src="{{url_for('static', filename='js/jquery.min.js')}}"></script>
+<script src="{{url_for('static', filename='js/popper.js')}}"></script>
+<script src="{{url_for('static', filename='js/bootstrap.min.js')}}"></script>
+<script src="{{url_for('static', filename='js/main.js')}}"></script>
+</body>
+</html>

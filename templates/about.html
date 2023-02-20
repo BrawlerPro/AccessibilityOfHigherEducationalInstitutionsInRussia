@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+
+<div class="px-4 pt-0 pb-4 cover">
+    <a href="/" class="btn btn-primary" role="button"><i class="fa fa-chevron-left"></i></a>
+</div>
+<div class="px-4 pt-0 pb-4 cover">
+
+    <br>
+    <div class="media align-items-end profile-head">
+        <div class="profile mr-3">
+            <img src="{{ img }}" alt="..." width="130" class="rounded mb-2 img-thumbnail">
+        </div>
+        <div class="media-body mb-5 text-white"><h4 class="mt-0 mb-0">{{ first_name }}</h4>
+        </div>
+    </div>
+</div>
+<div class="p-4 d-flex justify-content-end text-center">
+    <ul class="list-inline mb-0">
+        <li class="list-inline-item"><h5 class="font-weight-bold mb-0 d-block">Request time: {{ state[0] }}</h5></li>
+        <li class="list-inline-item"><h5 class="font-weight-bold mb-0 d-block">Request Response: {{ state[1] }}</h5>
+        </li>
+    </ul>
+</div>
+<div class="px-4 py-3"><h5 class="mb-0">Comments</h5>
+    {% if comments %}
+    {% for i in comments %}
+    <div class="p-4 rounded shadow-sm bg-light">
+        <h3 class="font-italic mb-0">{{i[0]}}:</h3>
+        <p class="font-italic mb-0">{{i[1]}}</p>
+    </div>
+    {% endfor %}
+    {% else %}
+    <div class="p-4 rounded shadow-sm bg-light">
+        <h1 class="font-italic mb-0">Чёт Пустенько</h1>
+    </div>
+    {% endif %}
+</div>
+
+
+{% endblock %}
